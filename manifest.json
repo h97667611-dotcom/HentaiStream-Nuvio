@@ -10,7 +10,7 @@
       "author": "HentaiStream-Nuvio",
       "supportedTypes": ["movie", "tv"],
       "filename": "providers/hanime-tv.js",
-      "enabled": false,
+      "enabled": true,
       "contentLanguage": ["en"]
     },
     {
@@ -21,7 +21,7 @@
       "author": "HentaiStream-Nuvio",
       "supportedTypes": ["movie", "tv"],
       "filename": "providers/hentaihaven-xxx.js",
-      "enabled": false,
+      "enabled": true,
       "contentLanguage": ["en"]
     },
     {
@@ -32,7 +32,7 @@
       "author": "HentaiStream-Nuvio",
       "supportedTypes": ["movie", "tv"],
       "filename": "providers/hanime-red.js",
-      "enabled": false,
+      "enabled": true,
       "contentLanguage": ["en"]
     },
     {
@@ -43,7 +43,7 @@
       "author": "HentaiStream-Nuvio",
       "supportedTypes": ["movie", "tv"],
       "filename": "providers/a-hentai-tv.js",
-      "enabled": false,
+      "enabled": true,
       "contentLanguage": ["en"]
     }
   ]
