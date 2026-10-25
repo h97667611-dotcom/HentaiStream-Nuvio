@@ -1,8 +1,17 @@
 {
-  "id": "hentaistream-nuvio",
   "name": "HentaiStream Nuvio",
-  "version": "0.1.0",
-  "description": "Adult-only metadata/catalog scaffold; stream resolution is intentionally not implemented.",
-  "entry": "providers/index.js",
-  "type": "provider"
+  "version": "0.2.0",
+  "scrapers": [
+    {
+      "id": "adult-catalog-placeholder",
+      "name": "Adult Catalog (placeholder)",
+      "description": "Disabled placeholder; no source scraping or stream resolution is included.",
+      "version": "0.2.0",
+      "author": "HentaiStream-Nuvio",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/adult-catalog.js",
+      "enabled": false,
+      "contentLanguage": ["ja", "en"]
+    }
+  ]
 }

@@ -1,31 +1,25 @@
-# HentaiStream-Nuvio
+# HentaiStream Nuvio
 
-**Current status: metadata-only scaffold; not yet a working Nuvio installation.**
+**Status: installable-format scaffold; no functional scraper/resolver.**
 
-This repository intentionally does not contain video scraping, stream URL extraction, downloading, or playback resolution for third-party streaming sites. It is a safe starting point for metadata/catalog work on content explicitly marked adult.
+This repository now follows the Nuvio provider repository shape (`name`, `version`, and `scrapers[]`) and the provider contract (`getStreams(tmdbId, mediaType, season, episode)`). The sole provider is disabled and intentionally returns an empty list. It does not make network requests or return stream URLs.
 
-## Safety filtering
+## Repository manifest
 
-Records must carry a recognized adult rating (`18+`, `adult`, `xxx`, `r18`, or `r-18`). Missing/ambiguous ratings are rejected. The adapter rejects records whose visible metadata includes terms associated with minors or non-consensual sexual content. This text filter is a conservative guard, not a guarantee of age or consent; a real source adapter would require human-reviewed policy and source terms.
+Install/repository URL:
 
-## Files
+`https://raw.githubusercontent.com/h97667611-dotcom/HentaiStream-Nuvio/main/manifest.json`
 
-- `manifest.json` — provisional; must be validated against the actual Nuvio plugin manifest schema.
-- `providers/index.js` — metadata normalization/filter helpers; no network source configured.
-- `test/provider.test.js` — Node tests for filtering and normalization.
+Nuvio repository installation is available in compatible sideloaded builds under Settings → Content & Discovery → Plugins. This URL being valid does not mean the placeholder provides playable sources.
 
-## Tests
+## Development
 
-Run with Node 18 or newer:
+Requires Node.js 18+:
 
 ```sh
 npm test
 ```
 
-## Integration remaining
+## Scope
 
-The Nuvio provider contract, required manifest keys, supported catalog/search method names, and any authorized metadata endpoint have not yet been verified. Therefore this repo does **not** advertise a working install URL. Before integration, verify Nuvio's current official plugin API and connect only a source that permits the intended metadata access.
-
-Upstream manifest supplied by requester: `https://hentaistream-addon.keypop3750.workers.dev/manifest.json`
-
-No upstream code is assumed licensed for reuse.
+This project does not host video. I can support metadata/catalog integration from authorized sources, but this repository currently has no upstream source configured and no scraper or stream resolver. Do not treat the provider as a working streaming plugin.
