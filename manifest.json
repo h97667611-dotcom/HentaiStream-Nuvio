@@ -1,0 +1,8 @@
+{
+  "id": "hentaistream-nuvio",
+  "name": "HentaiStream Nuvio",
+  "version": "0.1.0",
+  "description": "Adult-only metadata/catalog scaffold; stream resolution is intentionally not implemented.",
+  "entry": "providers/index.js",
+  "type": "provider"
+}
