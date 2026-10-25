@@ -1,31 +1,31 @@
 # HentaiStream-Nuvio
 
-A starter Nuvio provider project for catalog and metadata discovery.
+**Current status: metadata-only scaffold; not yet a working Nuvio installation.**
 
-> **Status:** scaffold only. It is not a tested, installable Nuvio plugin yet. The exact Nuvio manifest/provider contract and the source add-on's response formats still need verification.
+This repository intentionally does not contain video scraping, stream URL extraction, downloading, or playback resolution for third-party streaming sites. It is a safe starting point for metadata/catalog work on content explicitly marked adult.
 
-## Scope
+## Safety filtering
 
-- Adult-only metadata/catalog discovery (when sources can be safely filtered).
-- No video downloading or stream URL extraction in this scaffold.
-- Excludes sexual content involving minors, age-ambiguous characters, and non-consensual sexual content.
+Records must carry a recognized adult rating (`18+`, `adult`, `xxx`, `r18`, or `r-18`). Missing/ambiguous ratings are rejected. The adapter rejects records whose visible metadata includes terms associated with minors or non-consensual sexual content. This text filter is a conservative guard, not a guarantee of age or consent; a real source adapter would require human-reviewed policy and source terms.
 
 ## Files
 
-- `manifest.json` — provisional plugin metadata (schema needs validation against Nuvio's current plugin format).
-- `providers/index.js` — provider scaffold with safe catalog normalization helpers.
+- `manifest.json` — provisional; must be validated against the actual Nuvio plugin manifest schema.
+- `providers/index.js` — metadata normalization/filter helpers; no network source configured.
+- `test/provider.test.js` — Node tests for filtering and normalization.
 
-## Install
+## Tests
 
-There is currently no valid Nuvio install link. This repository must first be adapted to the current Nuvio plugin API and tested in Nuvio.
+Run with Node 18 or newer:
 
-## Development
+```sh
+npm test
+```
 
-The source Stremio add-on manifest supplied by the requester is:
-`https://hentaistream-addon.keypop3750.workers.dev/manifest.json`
+## Integration remaining
 
-This repository does not copy its code or scrape protected streams. Source response formats and lawful adult-only metadata endpoints must be reviewed before adding a provider.
+The Nuvio provider contract, required manifest keys, supported catalog/search method names, and any authorized metadata endpoint have not yet been verified. Therefore this repo does **not** advertise a working install URL. Before integration, verify Nuvio's current official plugin API and connect only a source that permits the intended metadata access.
 
-## License
+Upstream manifest supplied by requester: `https://hentaistream-addon.keypop3750.workers.dev/manifest.json`
 
-No license has been added yet. Do not assume permission to reuse the upstream add-on's code.
+No upstream code is assumed licensed for reuse.

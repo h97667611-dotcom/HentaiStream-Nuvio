@@ -1,0 +1,13 @@
+{
+  "name": "hentaistream-nuvio",
+  "version": "0.1.1",
+  "private": false,
+  "description": "Adult-only metadata catalog scaffold for Nuvio",
+  "main": "providers/index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,51 +1,20 @@
-/**
- * HentaiStream-Nuvio provider scaffold.
- * This is not yet wired to Nuvio's provider API. Keep source adapters metadata-only
- * until source formats, content filtering, and the current Nuvio contract are verified.
- */
-
-const PROVIDER_ID = "hentaistream";
-
-/**
- * Return true only when a record is explicitly marked adult and consensual.
- * Unknown/ambiguous records are excluded by default.
- */
+/** HentaiStream Nuvio metadata-only adapter scaffold. */
+const PROVIDER_ID = 'hentaistream';
+const BLOCKED_TERMS = /\b(loli|shota|underage|child|minor|non[- ]?consensual|rape|forced)\b/i;
+const ADULT_RATINGS = new Set(['18+','adult','xxx','r18','r-18']);
 function isAllowedRecord(record) {
-  if (!record || typeof record !== "object") return false;
-  const rating = String(record.rating || record.contentRating || "").toLowerCase();
-  const tags = Array.isArray(record.tags) ? record.tags.map(String) : [];
-  const normalizedTags = tags.map((tag) => tag.toLowerCase());
-
-  const blocked = [
-    "loli", "shota", "underage", "child", "minor", "non-consensual",
-    "rape", "forced", "incest with minor"
-  ];
-  if (blocked.some((term) => normalizedTags.some((tag) => tag.includes(term)))) return false;
-
-  // Fail closed: a clear adult rating must be present.
-  return ["18+", "adult", "xxx", "r18"].includes(rating);
+  if (!record || typeof record !== 'object') return false;
+  const rating = String(record.rating ?? record.contentRating ?? '').trim().toLowerCase();
+  const text = [record.title, record.name, record.description, ...(Array.isArray(record.tags)?record.tags:[]), ...(Array.isArray(record.genres)?record.genres:[])].filter(Boolean).join(' ');
+  if (BLOCKED_TERMS.test(text)) return false;
+  return ADULT_RATINGS.has(rating);
 }
-
-
-/** Normalize safe metadata only; intentionally no stream URL fields. */
 function normalizeCatalogRecord(record) {
   if (!isAllowedRecord(record)) return null;
-  return {
-    id: String(record.id || record.slug || ""),
-    title: String(record.name || record.title || "Untitled"),
-    poster: typeof record.poster === "string" ? record.poster : undefined,
-    description: typeof record.description === "string" ? record.description : undefined,
-    genres: Array.isArray(record.genres) ? record.genres.map(String) : [],
-    year: Number.isFinite(Number(record.year)) ? Number(record.year) : undefined
-  };
+  const id = record.id ?? record.slug;
+  const title = record.title ?? record.name;
+  if (id == null || title == null || !String(title).trim()) return null;
+  return { id:String(id), title:String(title).trim(), poster:typeof record.poster==='string'?record.poster:undefined, description:typeof record.description==='string'?record.description:undefined, genres:Array.isArray(record.genres)?record.genres.map(String):[], year:Number.isInteger(Number(record.year))?Number(record.year):undefined };
 }
-
-module.exports = {
-  id: PROVIDER_ID,
-  name: "HentaiStream",
-  status: "scaffold",
-  isAllowedRecord,
-  normalizeCatalogRecord,
-  // Search/catalog methods will be implemented after Nuvio's current API contract
-  // and the upstream add-on's metadata response format have been verified.
-};
+function filterCatalog(records) { return Array.isArray(records) ? records.map(normalizeCatalogRecord).filter(Boolean) : []; }
+module.exports = { id:PROVIDER_ID, name:'HentaiStream', status:'metadata-only-scaffold', isAllowedRecord, normalizeCatalogRecord, filterCatalog };
