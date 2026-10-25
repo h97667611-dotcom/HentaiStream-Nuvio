@@ -1,17 +1,50 @@
 {
   "name": "HentaiStream Nuvio",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "scrapers": [
     {
-      "id": "adult-catalog-placeholder",
-      "name": "Adult Catalog (placeholder)",
-      "description": "Disabled placeholder; no source scraping or stream resolution is included.",
-      "version": "0.2.0",
+      "id": "hanime-tv",
+      "name": "Hanime.tv",
+      "description": "Adult catalog source placeholder; disabled until an authorized metadata API is configured.",
+      "version": "0.3.0",
       "author": "HentaiStream-Nuvio",
       "supportedTypes": ["movie", "tv"],
-      "filename": "providers/adult-catalog.js",
+      "filename": "providers/hanime-tv.js",
       "enabled": false,
-      "contentLanguage": ["ja", "en"]
+      "contentLanguage": ["en"]
+    },
+    {
+      "id": "hentaihaven-xxx",
+      "name": "HentaiHaven.xxx",
+      "description": "Adult catalog source placeholder; disabled until an authorized metadata API is configured.",
+      "version": "0.3.0",
+      "author": "HentaiStream-Nuvio",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/hentaihaven-xxx.js",
+      "enabled": false,
+      "contentLanguage": ["en"]
+    },
+    {
+      "id": "hanime-red",
+      "name": "Hanime.red",
+      "description": "Adult catalog source placeholder; disabled until an authorized metadata API is configured.",
+      "version": "0.3.0",
+      "author": "HentaiStream-Nuvio",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/hanime-red.js",
+      "enabled": false,
+      "contentLanguage": ["en"]
+    },
+    {
+      "id": "a-hentai-tv",
+      "name": "A-Hentai TV",
+      "description": "Adult catalog source placeholder; disabled until an authorized metadata API is configured.",
+      "version": "0.3.0",
+      "author": "HentaiStream-Nuvio",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/a-hentai-tv.js",
+      "enabled": false,
+      "contentLanguage": ["en"]
     }
   ]
 }
